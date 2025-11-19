@@ -40,6 +40,8 @@ public class SlotController {
         try {
             System.out.println("Entered: "+facultyId+ " " +date);
             List<Slot> slots = slotService.getAvailableSlots(facultyId, date);
+            System.out.println(slots.isEmpty());
+            if(!slots.isEmpty())System.out.println(slots.get(0));
             return ResponseEntity.ok(slots);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
