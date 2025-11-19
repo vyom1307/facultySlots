@@ -23,6 +23,7 @@ public class SlotController {
     @PostMapping("/generate")
     public ResponseEntity<?> generateSlots(@RequestBody BookingRequest req) {
         try {
+            
             int count = slotService.generateAndSaveSlots(req);
             return ResponseEntity.ok(
                     Map.of("success", true, "message", count + " slots created successfully.")
@@ -37,6 +38,7 @@ public class SlotController {
     @GetMapping
     public ResponseEntity<?> getAvailableSlots(@RequestParam String facultyId, @RequestParam String date) {
         try {
+            System.out.println("Entered: "+facultyId+ " " +date);
             List<Slot> slots = slotService.getAvailableSlots(facultyId, date);
             return ResponseEntity.ok(slots);
         } catch (Exception e) {
